@@ -37,7 +37,7 @@ namespace Lab8
         {
             DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
             this.Hide();
-            fmDetail objfmDetailClass = new fmDetail(row.Cells[2].ToString(), row.Cells[0].ToString());
+            fmDetail objfmDetailClass = new fmDetail(row.Cells[2].Value.ToString(), row.Cells[0].Value.ToString());
             objfmDetailClass.Show();
         }
 

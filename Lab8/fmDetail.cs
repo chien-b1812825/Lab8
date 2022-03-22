@@ -32,14 +32,10 @@ namespace Lab8
         {
 
         }
-        private void dataGridView1_CellStateChanged(Object sender, DataGridViewCellStateChangedEventArgs e)
-        {
-            MessageBox.Show(id_monhoc);
-        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(id_monhoc);
+            
         }
     }
 }
