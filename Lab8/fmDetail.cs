@@ -11,7 +11,7 @@ namespace Lab8
 {
     public partial class fmDetail : Form
     {
-        String id_monhoc,id_sinhvien;
+        String id_monhoc,id_lop;
         SqlCommandBuilder scb;
         SqlDataAdapter sda;
         DataTable dbtb;
@@ -22,6 +22,7 @@ namespace Lab8
         public fmDetail(string x, string y) : this()
         {
             id_monhoc = y;
+            id_lop = x;
             SqlConnection conn = new SqlConnection(@"Data Source=ADMIN-PC;Initial Catalog=QLSV;Integrated Security=True");
             string query = "select DISTINCT SINHVIEN.MSSV, SINHVIEN.HOCTEN, DIEMTHI.DIEM from DIEMTHI inner join SINHVIEN on DIEMTHI.MSSV = SINHVIEN.MSSV inner join MONHOC on DIEMTHI.MAMON = MONHOC.MAMON where SINHVIEN.MALOP='" + x + "' AND MONHOC.MAMON='" + y + "'";
             sda = new SqlDataAdapter(query, conn);
@@ -43,8 +44,13 @@ namespace Lab8
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Refresh();
-            Refresh();
+            SqlConnection conn = new SqlConnection(@"Data Source=ADMIN-PC;Initial Catalog=QLSV;Integrated Security=True");
+            string query = "select DISTINCT SINHVIEN.MSSV, SINHVIEN.HOCTEN, DIEMTHI.DIEM from DIEMTHI inner join SINHVIEN on DIEMTHI.MSSV = SINHVIEN.MSSV inner join MONHOC on DIEMTHI.MAMON = MONHOC.MAMON where SINHVIEN.MALOP='" + id_lop + "' AND MONHOC.MAMON='" + id_monhoc + "'";
+            sda = new SqlDataAdapter(query, conn);
+            dbtb = new DataTable();
+            conn.Open();
+            sda.Fill(dbtb);
+            dataGridView1.DataSource = dbtb;
         }
     }
 }
